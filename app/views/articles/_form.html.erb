@@ -130,6 +130,7 @@
     }
 </style>
 </head>
+<body id="page-top">
 <%= form_for @article do |f| %>
 <% if @article.errors.any? %>
 <div id="error_explanation">
@@ -155,4 +156,5 @@ this article from being saved:
 <%= f.submit %>
 </p>
 <% end %>
+</body>
 </html>
