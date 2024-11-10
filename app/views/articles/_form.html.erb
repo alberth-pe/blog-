@@ -1,10 +1,10 @@
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Blog</title>
-     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <style>
     /* General page styles */
@@ -128,33 +128,58 @@
     a:hover {
         text-decoration: underline;
     }
-</style>
+
+    /* Error styling */
+    #error_explanation {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    #error_explanation ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    #error_explanation li {
+        margin-bottom: 5px;
+    }
+
+    </style>
 </head>
 <body id="page-top">
-<%= form_for @article do |f| %>
-<% if @article.errors.any? %>
-<div id="error_explanation">
-<h2>
-<%= pluralize(@article.errors.count, "error") %> prohibited
-this article from being saved:
-</h2>
-<ul>
-<% @article.errors.full_messages.each do |msg| %>
-<li><%= msg %></li><% end %>
-</ul>
-</div>
-<% end %>
-<p>
-<%= f.label :title %><br>
-<%= f.text_field :title %>
-</p>
-<p>
-<%= f.label :text %><br>
-<%= f.text_area :text %>
-</p>
-<p>
-<%= f.submit %>
-</p>
-<% end %>
+    <div id="page-top">
+        <%= form_for @article do |f| %>
+        <% if @article.errors.any? %>
+            <div id="error_explanation">
+                <h2>
+                    <%= pluralize(@article.errors.count, "error") %> prohibited
+                    this article from being saved:
+                </h2>
+                <ul>
+                    <% @article.errors.full_messages.each do |msg| %>
+                        <li><%= msg %></li>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+        
+        <p>
+            <%= f.label :title, "Article Title" %><br>
+            <%= f.text_field :title, placeholder: "Enter the article title", class: "form-control" %>
+        </p>
+        
+        <p>
+            <%= f.label :text, "Content" %><br>
+            <%= f.text_area :text, placeholder: "Write your article here...", class: "form-control" %>
+        </p>
+        
+        <p>
+            <%= f.submit "Publish Article", class: "btn btn-primary" %>
+        </p>
+        <% end %>
+    </div>
 </body>
 </html>
